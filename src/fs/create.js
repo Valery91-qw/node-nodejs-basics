@@ -1,14 +1,14 @@
 import { writeFile } from "fs";
 import { dirname } from "path";
 import { fileURLToPath } from 'url';
-const PathToDirectory = dirname(fileURLToPath(import.meta.url)) + '/files/';
+const pathToDirectory = dirname(fileURLToPath(import.meta.url)) + '/files/';
 const fileName = 'fresh.txt';
 const content = 'I am fresh and young';
 const ErrorMessage = 'FS operation failed';
 
-export const create = async () => {
+export const create = async (existDir, fileName, content ) => {
   writeFile(
-      PathToDirectory + fileName,
+      existDir + fileName,
       content,
       {flag: 'wx'},
       (err) => {
@@ -18,4 +18,4 @@ export const create = async () => {
       });
 };
 
-create();
+create(pathToDirectory, fileName, content);
