@@ -1,6 +1,6 @@
 import { existsSync , mkdir, copyFile , readdir } from "fs";
 import { dirname, join } from "path";
-import { fileURLToPath } from 'url';
+import { fileURLToPath } from "url";
 import {pathToExistDir, errorMessage} from "./fs.constants.js"
 const pathToDestDir = join(dirname(fileURLToPath(import.meta.url)), 'files_copy');
 
@@ -14,7 +14,7 @@ export const copy = async (existDir, target, errorMessage) => {
   await readdir(existDir, (err, files) => {
     if (err) return err;
     files.forEach((file) => {
-      copyFile(`${existDir}/${file}`, `${target}/${file}` , (err) => {
+      copyFile(join(existDir, file), join(target, file) , (err) => {
         if(err) return err;
       })
     })

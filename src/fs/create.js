@@ -1,10 +1,11 @@
 import { writeFile } from "fs";
 import { pathToExistDir, errorMessage } from "./fs.constants.js";
-const fileName = 'fresh.txt';
-const content = 'I am fresh and young';
+import {join} from "path";
+const fileName = "fresh.txt";
+const content = "I am fresh and young";
 export const create = async (existDir, fileName, content, error) => {
   writeFile(
-      `${existDir}/${fileName}`,
+      join(existDir, fileName),
       content,
       {flag: 'wx'},
       (err) => {
