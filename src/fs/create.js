@@ -1,21 +1,17 @@
 import { writeFile } from "fs";
-import { dirname } from "path";
-import { fileURLToPath } from 'url';
-const pathToDirectory = dirname(fileURLToPath(import.meta.url)) + '/files/';
+import { pathToExistDir, errorMessage } from "./fs.constants.js";
 const fileName = 'fresh.txt';
 const content = 'I am fresh and young';
-const ErrorMessage = 'FS operation failed';
-
-export const create = async (existDir, fileName, content ) => {
+export const create = async (existDir, fileName, content, error) => {
   writeFile(
-      existDir + fileName,
+      `${existDir}/${fileName}`,
       content,
       {flag: 'wx'},
       (err) => {
         if (err) {
-          throw new Error(ErrorMessage);
+          throw new Error(error);
         }
       });
 };
 
-create(pathToDirectory, fileName, content);
+create(pathToExistDir, fileName, content, errorMessage);
