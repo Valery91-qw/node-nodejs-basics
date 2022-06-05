@@ -1,10 +1,10 @@
 import { existsSync , mkdir, copyFile , readdir } from "fs";
 import { dirname, join } from "path";
 import { fileURLToPath } from "url";
-import {pathToExistDir, errorMessage} from "./fs.constants.js"
+import { pathToExistDir, errorMessage } from "./fs.constants.js"
 const pathToDestDir = join(dirname(fileURLToPath(import.meta.url)), 'files_copy');
 
-export const copy = async (existDir, target, errorMessage) => {
+export const copy = async (existDir, target) => {
   if (existsSync(target) || !existsSync(existDir)) {
     throw new Error(errorMessage);
   }
@@ -21,4 +21,4 @@ export const copy = async (existDir, target, errorMessage) => {
   })
 };
 
-copy(pathToExistDir, pathToDestDir, errorMessage)
+copy(pathToExistDir, pathToDestDir)
