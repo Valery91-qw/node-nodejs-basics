@@ -13,7 +13,7 @@ const getContent = async (file) => {
 export const calculateHash = async () => {
     const data = await getContent(pathToFile)
     const hash = await createHash('sha256');
-    return hash.update(data).digest('hex');
+    console.log(hash.update(data).digest('hex'));
 };
 
 calculateHash()
